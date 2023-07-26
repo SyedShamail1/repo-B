@@ -15,4 +15,4 @@ jobs:
         with:
           token: ${{ secrets.REPO_A_PAT }}
           repository: SyedShamail1/testt-workflows  # Replace with the repository A where the workflow should be triggered
-          event-type: get-new-files         
+          event-type: get-new-files            
