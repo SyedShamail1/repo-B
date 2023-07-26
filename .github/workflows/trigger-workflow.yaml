@@ -14,5 +14,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_A_PAT }}
-          repository: username/repo-a  # Replace with the repository A where the workflow should be triggered
+          repository: SyedShamail1/testt-workflows  # Replace with the repository A where the workflow should be triggered
           event-type: get-new-files
