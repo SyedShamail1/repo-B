@@ -10,10 +10,21 @@ jobs:
     runs-on: ubuntu-latest     
 
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Get previous commit SHA
+        id: get_prev_commit
+        run: echo "::set-output name=prev_commit::$(git rev-parse HEAD^)"
+
+      - name: Get current commit SHA
+        id: get_curr_commit
+        run: echo "::set-output name=curr_commit::${{ github.sha }}"
       - name: Trigger Workflow in Repository A
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_A_PAT }}
           repository: SyedShamail1/testt-workflows  # Replace with the repository A where the workflow should be triggered
           event-type: get-new-files
-          client_payload: '{"before": "${{ github.event.before }}", "after": "${{ github.sha }}" }'             
+          # client_payload: '{"before": "${{ github.event.before }}", "after": "${{ github.sha }}" }'
+          client_payload: '{"before": "${{ steps.get_prev_commit.outputs.prev_commit }}", "after": "${{ steps.get_curr_commit.outputs.curr_commit }}" }'             
