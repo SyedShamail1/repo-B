@@ -1,0 +1,18 @@
+name: Trigger Workflow in Repository A
+
+on:
+  push:
+    branches:
+      - main  # Replace with the branch you want to trigger the action on
+
+jobs:
+  trigger_repository_a_workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Workflow in Repository A
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_A_PAT }}
+          repository: username/repo-a  # Replace with the repository A where the workflow should be triggered
+          event-type: get-new-files
