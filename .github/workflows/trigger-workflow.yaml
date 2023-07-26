@@ -20,6 +20,14 @@ jobs:
       - name: Get current commit SHA
         id: get_curr_commit
         run: echo "::set-output name=curr_commit::${{ github.sha }}"
+
+       # Save the commit SHAs as an artifact
+      - name: Upload commit SHAs as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: commit-shas
+          path: commit_shas.txt
+          
       - name: Trigger Workflow in Repository A
         uses: peter-evans/repository-dispatch@v1
         with:
