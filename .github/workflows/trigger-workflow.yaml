@@ -10,16 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get previous commit SHA
-        run: echo "PREV_COMMIT_SHA=$(git rev-parse HEAD^)" >> $GITHUB_ENV
-
-      - name: Get current commit SHA
-        run: echo "CURRENT_COMMIT_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
-
       - name: Trigger Workflow in Repository A
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_A_PAT }}
           repository: SyedShamail1/testt-workflows  # Replace with the repository A where the workflow should be triggered
           event-type: get-new-files
-          client_payload: '{"before": "${{ env.PREV_COMMIT_SHA }}", "after": "${{ env.CURRENT_COMMIT_SHA }}" }'             
+          client_payload: '{"before": "${{ github.event.before }}", "after": "${{ github.sha }}" }'             
