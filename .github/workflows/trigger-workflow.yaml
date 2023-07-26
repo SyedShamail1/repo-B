@@ -22,4 +22,4 @@ jobs:
           token: ${{ secrets.REPO_A_PAT }}
           repository: SyedShamail1/testt-workflows  # Replace with the repository A where the workflow should be triggered
           event-type: get-new-files
-          client_payload: '{"before": "${{ env.PREV_COMMIT_SHA }}", "after": "${{ env.CURRENT_COMMIT_SHA }}" }'            
+          client_payload: '{"before": "${{ env.PREV_COMMIT_SHA }}", "after": "${{ env.CURRENT_COMMIT_SHA }}" }'             
