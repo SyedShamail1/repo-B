@@ -7,7 +7,7 @@ on:
 
 jobs:
   trigger_repository_a_workflow:
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest     
 
     steps:
       - name: Trigger Workflow in Repository A
