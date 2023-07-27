@@ -9,6 +9,10 @@ jobs:
   trigger_repository_a_workflow:
     runs-on: ubuntu-latest     
 
+    env:
+      WORKFLOW_REPO: "SyedShamail1/testt-workflows"
+      SECRET_REP_A_PAT: ${{ secrets.REPO_A_PAT }}
+
     steps:
       - name: Checkout source code  
         uses: actions/checkout@v2
@@ -30,8 +34,8 @@ jobs:
       - name: Trigger Workflow in Repository A
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.REPO_A_PAT }}
-          repository: SyedShamail1/testt-workflows  # Replace with the repository A where the workflow should be triggered
+          token: $SECRET_REP_A_PAT
+          repository: $WORKFLOW_REPO  # Replace with the repository A where the workflow should be triggered
           event-type: get-new-files
           # client_payload: '{"before": "${{ github.event.before }}", "after": "${{ github.sha }}" }'
           client_payload: '{"before": "${{ steps.get_prev_commit.outputs.prev_commit }}", "after": "${{ steps.get_curr_commit.outputs.curr_commit }}" }'             
