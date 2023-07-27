@@ -11,7 +11,6 @@ jobs:
 
     env:
       WORKFLOW_REPO: "SyedShamail1/testt-workflows"
-      SECRET_REP_A_PAT: ${{ secrets.REPO_A_PAT }}
 
     steps:
       - name: Checkout source code  
@@ -34,7 +33,7 @@ jobs:
       - name: Trigger Workflow in Repository A
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: $SECRET_REP_A_PAT
+          token: ${{ secrets.REPO_A_PAT }}
           repository: $WORKFLOW_REPO  # Replace with the repository A where the workflow should be triggered
           event-type: get-new-files
           # client_payload: '{"before": "${{ github.event.before }}", "after": "${{ github.sha }}" }'
